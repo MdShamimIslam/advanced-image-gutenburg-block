@@ -471,7 +471,7 @@ const StyleSettings = ({ attributes, setAttributes, device }) => {
                                     "ftrHoverBorder"
                                   )
                                 }
-                                defaults={{ radius: "5px" }}
+                                defaults={{ radius: "0px" }}
                               />
                             </div>
                           ) : (
@@ -489,7 +489,7 @@ const StyleSettings = ({ attributes, setAttributes, device }) => {
                                     "ftrNormalBorder"
                                   )
                                 }
-                                defaults={{ radius: "5px" }}
+                                defaults={{ radius: "0px" }}
                               />
                             </div>
                           )}

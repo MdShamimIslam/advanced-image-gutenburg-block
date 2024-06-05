@@ -27,7 +27,6 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
        }
 
       ${mainWrapper} .featurePar{
-        ${getBorderCSS(ftrNormalBorder)};
         box-shadow: ${ftrNormalShadow.isInset ? 'inset' : ''} ${ftrNormalShadow.hOffset} ${ftrNormalShadow.vOffset} ${ftrNormalShadow.blur} ${ftrNormalShadow.spreed} ${ftrNormalShadow.color};
         ${ftrColumns.width.desktop[layout.ftrSize] ? `width:${ftrColumns.width.desktop[layout.ftrSize]};`:""}
         height:${ftrAutoHeight ? '100%' : ftrColumns.height.desktop};
@@ -50,8 +49,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
       ${mainWrapper} .featurePar img {
         width: 100%;
         height:100%;
-        border-radius: ${ ftrImgStyleOptionType === 'Circle' && '100%'};
-        
+        border-radius: ${ ftrImgStyleOptionType === 'Circle' ? '100%' : ftrNormalBorder.radius} ;
        }
 
       ${getTypoCSS(`${mainWrapper} .disCaption`, typography)?.styles}
@@ -105,7 +103,6 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
 
       }
       ${mainWrapper} .imgSrc img {
-        
        display: block;
        width: 100%;
        height:100%;
@@ -134,8 +131,8 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
       }
 
       ${mainWrapper} .imgSrc img:hover{
-         ${getBorderCSS(hoverBorder)};
-        box-shadow: ${hoverShadow.isInset ? 'inset' : ''} ${hoverShadow.hOffset} ${hoverShadow.vOffset} ${hoverShadow.blur} ${hoverShadow.spreed} ${hoverShadow.color};
+        ${getBorderCSS(hoverBorder)};
+         box-shadow: ${hoverShadow.isInset ? 'inset' : ''} ${hoverShadow.hOffset} ${hoverShadow.vOffset} ${hoverShadow.blur} ${hoverShadow.spreed} ${hoverShadow.color};
       }
       ${mainWrapper} .featurePar img:hover{
          ${getBorderCSS(ftrHoverBorder)};
@@ -150,14 +147,12 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
       }
 
       ${mainWrapper} .image-container {
-          ${getBorderCSS(imgStyles.border)};
           display: flex;
           flex-direction: column;
           align-items: ${imgStyles.align.desktop}; 
          
         }
       ${mainWrapper} .ftr-image-container {
-          ${getBorderCSS(imgStyles.border)};
           display: flex;
           flex-direction: column;
           align-items: ${imgStyles.ftrAlign.desktop}; 
@@ -167,6 +162,10 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
         ${mainWrapper} .imgChildCon {
           position: relative;
         ${getBorderCSS(normalBorder)};
+        }
+
+        ${mainWrapper} .ftr-imgChildCon {
+        ${getBorderCSS(ftrNormalBorder)};
         }
 
       ${mainWrapper} .imgChildCon img {
