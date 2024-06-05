@@ -1,0 +1,216 @@
+{
+  "apiVersion": "1",
+  "name": "aib/advanced-image",
+  "title": "Advanced Image",
+  "description": "Description of Advanced Image.",
+  "category": "common",
+  "keywords": ["Advanced", "Image", "advanced-image"],
+  "textdomain": "advanced-image",
+  "attributes": {
+    "cId": {
+      "type": "string",
+      "default": ""
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "sourceType": "",
+        "source": {
+          "id": null,
+          "url": "",
+          "title": "",
+          "alt": ""
+        },
+        "link": {
+          "url": "",
+          "target": "_self"
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "style": "default",
+        "size": "default",
+        "ftrSize": "default",
+        "width": "500px",
+        "isAutoHeight": true,
+        "isAutoFit": false
+      }
+    },
+    "style":{
+      "type": "object",
+      "default": {
+        "hoverEffect": "none",
+        "alignment": {
+          "desktop": "left",
+          "tablet": "left",
+          "mobile": "left"
+        },
+        "border": {
+          "normal": {},
+          "hover": {}
+        },
+        "shadow": {
+          "normal": {},
+          "hover": {}
+        }
+      }
+    },
+    "caption": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "text": ""
+      }
+    },
+    "captionStyle": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "typo": "",
+        "colors": ""
+      }
+    },
+    "handleImg": {
+      "type": "object",
+      "default": {
+        "imgStyles": {
+          "selectBorder": "normal",
+          "ftrSelectBorder": "normal",
+          "normalBorder": { },
+          "ftrNormalBorder": { },
+          "hoverBorder": { },
+          "ftrHoverBorder": { },
+          "align": {
+            "desktop": "start",
+            "tablet": "start",
+            "mobile": "start"
+          },
+          "ftrAlign": {
+            "desktop": "start",
+            "tablet": "start",
+            "mobile": "start"
+          },
+          "activeImgAlignBtn": "",
+          "ftrActiveImgAlignBtn": "",
+          "selectShadow": "normal",
+          "ftrSelectShadow": "normal",
+          "normalShadow": { },
+          "ftrNormalShadow": { },
+          "hoverShadow": { },
+          "ftrHoverShadow": { }
+        },
+        "captionStyles": {
+          "text":"",
+          "border": {},
+          "typography": { "fontSize": 13 },
+          "textAlign": {
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
+          },
+          "horizontalAlign": {
+            "desktop": "start",
+            "tablet": "start",
+            "mobile": "start"
+          },
+          "verticalAlign": {
+            "desktop": "bottom",
+            "tablet": "top",
+            "mobile": "middle"
+          },
+          "activeAlign": "left",
+          "activeHorizontalAlign": "start",
+          "activeVerticalAlign": "bottom",
+          "colors": { "color": "black", "bg": "#EEEEEE" },
+          "width": {
+            "desktop": "",
+            "tablet": "",
+            "mobile": ""
+          },
+          "margin": {
+            "desktop":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"},
+            "tablet":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"},
+            "mobile":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"}
+          },
+          "padding": {
+            "desktop":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"},
+            "tablet":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"},
+            "mobile":{ "top": "0px",  "right": "0px", "bottom": "0px", "left": "0px"}
+          }
+         
+        },
+        "device": "desktop",
+        "customImg": false,
+        "customEditingMode": true,
+        "siteLogo": false,
+        "logoEditingMode": true,
+        "featuredImg": false,
+        "imgURL": "",
+        "logoSrc": "",
+        "logoURL": "",
+        "imgSrcOptionType": "custom",
+        "columns": {
+          "width": { "desktop": {"default":"","thumbnail":"150px", "medium":"300px","large":"", "full":"420px"},
+                     "tablet": {"default":"","thumbnail":"150px", "medium":"300px", "large":"", "full":"420px"}, 
+                     "mobile": {"default":"","thumbnail":"150px", "medium":"300px", "large":"", "full":"420px"} 
+                   },
+          "height": { "desktop": "300px", "tablet": "200px", "mobile": "150px" }
+        },
+        "ftrColumns": {
+          "width": { "desktop": {"default":"","thumbnail":"150px", "medium":"300px","large":"", "full":"420px"},
+                     "tablet": {"default":"","thumbnail":"150px", "medium":"300px", "large":"", "full":"420px"}, 
+                     "mobile": {"default":"","thumbnail":"150px", "medium":"300px", "large":"", "full":"420px"} 
+                   },
+          "height": { "desktop": "300px", "tablet": "200px", "mobile": "150px" }
+        },
+        "displayCaption": false,
+        "ftrDisplayCaption": false,
+        "autoHeight": true,
+        "ftrAutoHeight": true,
+        "autoFitImage": false,
+        "ftrAutoFitImage": false,
+        "enableLink": false,
+        "ftrEnableLink": false,
+        "enableNewTab": false,
+        "ftrEnableNewTab": false,
+        "imgStyleOptionType": "rounded",
+        "ftrImgStyleOptionType": "rounded",
+        "CaptionStyleType": "style2",
+        "imgFitOptionType": "cover",
+        "ftrImgFitOptionType": "cover",
+        "enableLinkText": "",
+        "ftrEnableLinkText": "",
+        "imgHoverEffect": "none",
+        "ftrImgHoverEffect": "none",
+        "logoColumns": {
+          "logoWidth": { "desktop": "10px", "tablet": "7px", "mobile": "4px" },
+          "logoHeight": { "desktop": "10px", "tablet": "7px", "mobile": "4px" }
+        },
+        "logoAutoHeight": true,
+        "logoAutoFitImage": false,
+        "logoImgFitOptionType": "cover",
+        "logoEnableLink": false,
+        "logoEnableNewTab": false,
+        "logoEnableLinkText": "",
+        "logoImgHoverEffect": "none"
+      }
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "example": {
+    "attributes": {
+      "preview": true,
+      "columns": {
+        "desktop": 1,
+        "tablet": 1,
+        "mobile": 1
+      }
+    }
+  },
+  "editorScript": "file:./../dist/editor.js"
+}
