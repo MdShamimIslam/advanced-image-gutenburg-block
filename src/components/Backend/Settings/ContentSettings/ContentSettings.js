@@ -92,21 +92,6 @@ const ContentSettings = ({ attributes, setAttributes,device }) => {
                           />
                         </div>
                       </div>
-                      {/* Caption Styles */}
-                      {/* <div>
-                        {
-                          displayCaption && (
-                            <div>
-                              <p className='captionChild'>Caption Styles</p>
-                              <SelectControl
-                                value={CaptionStyleType}
-                                options={captionStylesOptions}
-                                onChange={(v) => updateValueOfProperty("CaptionStyleType", v)}
-                              />
-                            </div>
-                          )
-                        }
-                      </div> */}
                       {/* image size */}
                       <div>
                         <p className='imgSizeChild'>Image Size</p>

@@ -1,0 +1,76 @@
+# Copyright (C) 2024 bPlugins LLC
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced-image 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-image\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-06-05T11:50:32+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: advanced-image\n"
+
+#. Plugin Name of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\advanced-image\index.php
+msgid "Advanced-image"
+msgstr ""
+
+#. Description of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\advanced-image\index.php
+msgid "Description of the Advanced-image."
+msgstr ""
+
+#. Author of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\advanced-image\index.php
+msgid "bPlugins LLC"
+msgstr ""
+
+#. Author URI of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\advanced-image\index.php
+msgid "http://bplugins.com"
+msgstr ""
+
+#: dist/editor.js:1
+#: dist/editor.js:2119
+msgid "General Settings"
+msgstr ""
+
+#: dist/editor.js:1
+#: dist/editor.js:11991
+#: dist/editor.js:12204
+msgid "Image Styles"
+msgstr ""
+
+#: dist/editor.js:1
+#: dist/editor.js:12419
+msgid "Caption Styles"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block title"
+msgid "Advanced Image"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block description"
+msgid "Description of Advanced Image."
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "Advanced"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "Image"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "advanced-image"
+msgstr ""

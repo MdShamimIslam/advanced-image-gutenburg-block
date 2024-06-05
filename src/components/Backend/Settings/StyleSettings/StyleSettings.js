@@ -4,8 +4,7 @@ import {
   PanelRow,
   SelectControl,
   ToolbarButton,
-  ToolbarGroup,
-  __experimentalUnitControl as UnitControl,
+  ToolbarGroup
 } from "@wordpress/components";
 import { useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
@@ -23,8 +22,9 @@ import { imgAlignOptions } from "../../../../utils/options";
 import { BBoxControl } from "../../../BBoxControl/BBoxControl";
 import { Tab } from "../../../Panel/Tab/Tab";
 import { updateData } from "../../../../utils/functions";
+import { RangeControl } from "@wordpress/components";
 
-const StyleSettings = ({ attributes, setAttributes,device }) => {
+const StyleSettings = ({ attributes, setAttributes, device }) => {
   const { handleImg } = attributes;
   const {
     customImg,
@@ -143,7 +143,6 @@ const StyleSettings = ({ attributes, setAttributes,device }) => {
     updateAlign("captionStyles", "activeVerticalAlign", verticalAlign[device]);
   }, [verticalAlign, device]);
 
-
   return (
     <Fragment>
       <BlockControls>
@@ -165,667 +164,574 @@ const StyleSettings = ({ attributes, setAttributes,device }) => {
         <div className="stylePan">
           {/* image styles for custom */}
           {
-            customImg || featuredImg ?(
+            customImg || featuredImg ? (
               <div>
                 {imgSrcOptionType === "custom" && (
-            <PanelBody
-              title={__("Image Styles", "advanced-image")}
-              initialOpen={true}
-            >
-              <div className="styleChild" style={{ marginTop: "10px" }}>
-                {/* image align */}
-                <div>
-                  <div className="imgAlign">
-                    <p className="alignChild">Image Align</p>
-                    <PanelRow>
-                      <Device />
-                    </PanelRow>
-                  </div>
-                  <SelectControl
-                    value={align[device]}
-                    options={imgAlignOptions}
-                    onChange={(v) =>
-                      updateImgResponsiveStyles("imgStyles", v, "align", device)
-                    }
-                  />
-                </div>
-                {/* border */}
-                <div style={{ marginTop: "12px" }}>
-                  <p className="borChild">Border</p>
-                  <div
-                    style={{
-                      marginTop: "-5px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
+                  <PanelBody title={__("Image Styles", "advanced-image")} initialOpen={true}>
+
+                    <div className="styleChild" style={{ marginTop: "10px" }}>
+                      {/* image align */}
+                      <div>
+                        <div className="imgAlign">
+                          <p className="alignChild">Image Align</p>
+                          <PanelRow>
+                            <Device />
+                          </PanelRow>
+                        </div>
+                        <SelectControl
+                          value={align[device]}
+                          options={imgAlignOptions}
+                          onChange={(v) =>
+                            updateImgResponsiveStyles("imgStyles", v, "align", device)
+                          }
+                        />
+                      </div>
+                      {/* border */}
+                      <div style={{ marginTop: "12px" }}>
+                        <p className="borChild">Border</p>
+                        <div
+                          style={{
+                            marginTop: "-5px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <p
+                            style={{
+                              backgroundColor:
+                                selectBorder === "normal" ? "#4527a4" : "#ccc",
+                              color: selectBorder === "normal" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopLeftRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "normal",
+                                "selectBorder"
+                              )
+                            }
+                          >
+                            Normal
+                          </p>
+                          <p
+                            style={{
+                              backgroundColor:
+                                selectBorder === "hover" ? "#4527a4" : "#ccc",
+                              color: selectBorder === "hover" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopRightRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "hover",
+                                "selectBorder"
+                              )
+                            }
+                          >
+                            Hover
+                          </p>
+                        </div>
+                        <div>
+                          {selectBorder === "hover" ? (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-28px" }}>
+                                Border for Hover
+                              </p>
+                              <BorderControl
+                                label=""
+                                value={hoverBorder}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "hoverBorder"
+                                  )
+                                }
+                                defaults={{ radius: "0px" }}
+                              />
+                            </div>
+                          ) : (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-28px" }}>
+                                Border for Normal
+                              </p>
+                              <BorderControl
+                                label=""
+                                value={normalBorder}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "normalBorder"
+                                  )
+                                }
+                                defaults={{ radius: "0px" }}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      {/* shadow */}
+                      <div className="my">
+                        <p className="shadChild">Shadow</p>
+                        <div
+                          style={{
+                            marginTop: "-2px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <p
+                            style={{
+                              backgroundColor:
+                                selectShadow === "normal" ? "#4527a4" : "#ccc",
+                              color: selectShadow === "normal" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopLeftRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "normal",
+                                "selectShadow"
+                              )
+                            }
+                          >
+                            Normal
+                          </p>
+                          <p
+                            style={{
+                              backgroundColor:
+                                selectShadow === "hover" ? "#4527a4" : "#ccc",
+                              color: selectShadow === "hover" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopRightRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "hover",
+                                "selectShadow"
+                              )
+                            }
+                          >
+                            Hover
+                          </p>
+                        </div>
+                        <div>
+                          {selectShadow === "normal" ? (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-25px" }}>
+                                Shadow for Normal
+                              </p>
+                              <ShadowControl
+                                label=""
+                                value={normalShadow}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "normalShadow"
+                                  )
+                                }
+                              />
+                            </div>
+                          ) : (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-25px" }}>
+                                Shadow for Hover
+                              </p>
+                              <ShadowControl
+                                label=""
+                                value={hoverShadow}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "hoverShadow"
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </PanelBody>
+                )}
+                {/* image styles for featured */}
+                {imgSrcOptionType === "featured" && (
+                  <PanelBody
+                    title={__("Image Styles", "advanced-image")}
+                    initialOpen={true}
                   >
-                    <p
-                      style={{
-                        backgroundColor:
-                          selectBorder === "normal" ? "#4527a4" : "#ccc",
-                        color: selectBorder === "normal" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopLeftRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "normal",
-                          "selectBorder"
-                        )
-                      }
-                    >
-                      Normal
-                    </p>
-                    <p
-                      style={{
-                        backgroundColor:
-                          selectBorder === "hover" ? "#4527a4" : "#ccc",
-                        color: selectBorder === "hover" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopRightRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "hover",
-                          "selectBorder"
-                        )
-                      }
-                    >
-                      Hover
-                    </p>
-                  </div>
-                  <div>
-                    {selectBorder === "hover" ? (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-28px" }}>
-                          Border for Hover
-                        </p>
-                        <BorderControl
-                          label=""
-                          value={hoverBorder}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "hoverBorder"
-                            )
-                          }
-                          defaults={{ radius: "0px" }}
-                        />
-                      </div>
-                    ) : (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-28px" }}>
-                          Border for Normal
-                        </p>
-                        <BorderControl
-                          label=""
-                          value={normalBorder}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "normalBorder"
-                            )
-                          }
-                          defaults={{ radius: "0px" }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {/* shadow */}
-                <div className="my">
-                  <p className="shadChild">Shadow</p>
-                  <div
-                    style={{
-                      marginTop: "-2px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <p
-                      style={{
-                        backgroundColor:
-                          selectShadow === "normal" ? "#4527a4" : "#ccc",
-                        color: selectShadow === "normal" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopLeftRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "normal",
-                          "selectShadow"
-                        )
-                      }
-                    >
-                      Normal
-                    </p>
-                    <p
-                      style={{
-                        backgroundColor:
-                          selectShadow === "hover" ? "#4527a4" : "#ccc",
-                        color: selectShadow === "hover" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopRightRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "hover",
-                          "selectShadow"
-                        )
-                      }
-                    >
-                      Hover
-                    </p>
-                  </div>
-                  <div>
-                    {selectShadow === "normal" ? (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-25px" }}>
-                          Shadow for Normal
-                        </p>
-                        <ShadowControl
-                          label=""
-                          value={normalShadow}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "normalShadow"
-                            )
+                    <div className="styleChild" style={{ marginTop: "10px" }}>
+                      {/* image align */}
+                      <div>
+                        <div className="imgAlign">
+                          <p className="alignChild">Image Align</p>
+                          <PanelRow>
+                            <Device />
+                          </PanelRow>
+                        </div>
+                        <SelectControl
+                          value={ftrAlign[device]}
+                          options={imgAlignOptions}
+                          onChange={(v) =>
+                            updateImgResponsiveStyles("imgStyles", v, "ftrAlign", device)
                           }
                         />
                       </div>
-                    ) : (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-25px" }}>
-                          Shadow for Hover
-                        </p>
-                        <ShadowControl
-                          label=""
-                          value={hoverShadow}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "hoverShadow"
-                            )
-                          }
-                        />
+                      {/* border */}
+                      <div style={{ marginTop: "12px" }}>
+                        <p className="borChild">Border</p>
+                        <div
+                          style={{
+                            marginTop: "-5px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <p
+                            style={{
+                              backgroundColor:
+                                ftrSelectBorder === "normal" ? "#4527a4" : "#ccc",
+                              color: ftrSelectBorder === "normal" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopLeftRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "normal",
+                                "ftrSelectBorder"
+                              )
+                            }
+                          >
+                            Normal
+                          </p>
+                          <p
+                            style={{
+                              backgroundColor:
+                                ftrSelectBorder === "hover" ? "#4527a4" : "#ccc",
+                              color: ftrSelectBorder === "hover" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopRightRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "hover",
+                                "ftrSelectBorder"
+                              )
+                            }
+                          >
+                            Hover
+                          </p>
+                        </div>
+                        <div>
+                          {ftrSelectBorder === "hover" ? (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-28px" }}>
+                                Border for Hover
+                              </p>
+                              <BorderControl
+                                label=""
+                                value={ftrHoverBorder}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "ftrHoverBorder"
+                                  )
+                                }
+                                defaults={{ radius: "5px" }}
+                              />
+                            </div>
+                          ) : (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-28px" }}>
+                                Border for Normal
+                              </p>
+                              <BorderControl
+                                label=""
+                                value={ftrNormalBorder}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "ftrNormalBorder"
+                                  )
+                                }
+                                defaults={{ radius: "5px" }}
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    )}
-                  </div>
+                      {/* shadow */}
+                      <div className="my">
+                        <p className="shadChild">Shadow</p>
+                        <div
+                          style={{
+                            marginTop: "-2px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <p
+                            style={{
+                              backgroundColor:
+                                ftrSelectShadow === "normal" ? "#4527a4" : "#ccc",
+                              color: ftrSelectShadow === "normal" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopLeftRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "normal",
+                                "ftrSelectShadow"
+                              )
+                            }
+                          >
+                            Normal
+                          </p>
+                          <p
+                            style={{
+                              backgroundColor:
+                                ftrSelectShadow === "hover" ? "#4527a4" : "#ccc",
+                              color: ftrSelectShadow === "hover" ? "white" : undefined,
+                              borderRadius: "0px",
+                              width: "100%",
+                              textAlign: "center",
+                              padding: "5px 0px",
+                              cursor: "pointer",
+                              borderTopRightRadius: "5px",
+                            }}
+                            onClick={() =>
+                              updateValueOfStylesProperty(
+                                "imgStyles",
+                                "hover",
+                                "ftrSelectShadow"
+                              )
+                            }
+                          >
+                            Hover
+                          </p>
+                        </div>
+                        <div>
+                          {ftrSelectShadow === "normal" ? (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-25px" }}>
+                                Shadow for Normal
+                              </p>
+                              <ShadowControl
+                                label=""
+                                value={ftrNormalShadow}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "ftrNormalShadow"
+                                  )
+                                }
+                              />
+                            </div>
+                          ) : (
+                            <div style={{ marginTop: "-2px" }}>
+                              <p style={{ marginBottom: "-25px" }}>
+                                Shadow for Hover
+                              </p>
+                              <ShadowControl
+                                label=""
+                                value={ftrHoverShadow}
+                                onChange={(val) =>
+                                  updateValueOfStylesProperty(
+                                    "imgStyles",
+                                    val,
+                                    "ftrHoverShadow"
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </PanelBody>
+                )}
+                {/* content styles */}
+                <div className="settingStyles">
+                  {imgSrcOptionType === "custom" && (
+                    <PanelBody
+                      title={__("Caption Styles", "advanced-image")}
+                      initialOpen={true}
+                    >
+                      <div className="styleChild" style={{ marginTop: "10px" }}>
+
+                        {/* color and background */}
+                        <div className="colorsPar">
+                          <p className="colorsChild">Colors</p>
+                          <ColorsControl
+                            label=""
+                            value={colors}
+                            onChange={(val) =>
+                              updateValueOfStylesProperty(
+                                "captionStyles",
+                                val,
+                                "colors"
+                              )
+                            }
+                            defaults={{ color: "black", bg: "#EEEEEE" }}
+                          />
+                        </div>
+                        {/* Width */}
+                        <div className="my">
+                          <div className="customWidth">
+                            <p className="widthChild">Width</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <RangeControl
+                            value={width[device]}
+                            allowReset
+                            onChange={(v) =>
+                              updateWidth("captionStyles", v, "width")
+                            }
+                            min={1}
+                            max={300}
+                          />
+                        </div>
+
+                        {/* typography */}
+                        <div className="my typo">
+                          <p className="typoChild">Typography</p>
+                          <Typography
+                            label=""
+                            value={typography}
+                            onChange={(val) =>
+                              updateValueOfStylesProperty(
+                                "captionStyles",
+                                val,
+                                "typography"
+                              )
+                            }
+                            defaults={{ fontSize: 13 }}
+                          />
+                        </div>
+                        {/* text align */}
+                        <div className="my">
+                          <div className="customTextAlign">
+                            <p className="textAlignChild">Text Align</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <Tab options={["left", "right", "center", "justify"]} value={captionStyles.textAlign[device]} onChange={val => setAttributes({ handleImg: updateData(handleImg, val, "captionStyles", "textAlign", device) })} />
+
+                        </div>
+                        {/* horizontal align */}
+                        <div className="my">
+                          <div className="customTextAlign">
+                            <p className="textAlignChild">Horizontal Align</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <Tab options={["start", "center", "end"]} value={captionStyles.horizontalAlign[device]} onChange={val => setAttributes({ handleImg: updateData(handleImg, val, "captionStyles", "horizontalAlign", device) })} />
+
+                        </div>
+                        {/* vertical align */}
+                        <div className="my">
+                          <div className="customTextAlign">
+                            <p className="textAlignChild">Vertical Align</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <Tab options={["top", "middle", "bottom"]} value={captionStyles.verticalAlign[device]} onChange={val => setAttributes({ handleImg: updateData(handleImg, val, "captionStyles", "verticalAlign", device) })} />
+
+                        </div>
+                        {/* margin */}
+                        <div className="my">
+                          <div className="margin">
+                            <p className="marChild">Margin</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <BBoxControl
+                            label=""
+                            values={margin[device]}
+                            onChange={(val) => updateValueOfStylesProperty("captionStyles", val, "margin", device)}
+                          ></BBoxControl>
+                        </div>
+                        {/* padding */}
+                        <div className="my">
+                          <div className="padding">
+                            <p className="padChild">Padding</p>
+                            <PanelRow>
+                              <Device />
+                            </PanelRow>
+                          </div>
+                          <BBoxControl
+                            label=""
+                            values={padding[device]}
+                            onChange={(val) =>
+                              updateValueOfStylesProperty(
+                                "captionStyles",
+                                val,
+                                "padding",
+                                device
+                              )
+                            }
+                          ></BBoxControl>
+                        </div>
+                      </div>
+                    </PanelBody>
+                  )}
                 </div>
               </div>
-            </PanelBody>
-          )}
-          {/* image styles for featured */}
-          {imgSrcOptionType === "featured" && (
-            <PanelBody
-              title={__("Image Styles", "advanced-image")}
-              initialOpen={true}
-            >
-              <div className="styleChild" style={{ marginTop: "10px" }}>
-                {/* image align */}
-                <div>
-                  <div className="imgAlign">
-                    <p className="alignChild">Image Align</p>
-                    <PanelRow>
-                    <Device                      />
-                    </PanelRow>
-                  </div>
-                  <SelectControl
-                    value={ftrAlign[device]}
-                    options={imgAlignOptions}
-                    onChange={(v) =>
-                      updateImgResponsiveStyles("imgStyles", v, "ftrAlign", device)
-                    }
-                  />
-                </div>
-                {/* border */}
-                <div style={{ marginTop: "12px" }}>
-                  <p className="borChild">Border</p>
-                  <div
-                    style={{
-                      marginTop: "-5px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <p
-                      style={{
-                        backgroundColor:
-                        ftrSelectBorder === "normal" ? "#4527a4" : "#ccc",
-                        color: ftrSelectBorder === "normal" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopLeftRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "normal",
-                          "ftrSelectBorder"
-                        )
-                      }
-                    >
-                      Normal
-                    </p>
-                    <p
-                      style={{
-                        backgroundColor:
-                          ftrSelectBorder === "hover" ? "#4527a4" : "#ccc",
-                        color: ftrSelectBorder === "hover" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopRightRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "hover",
-                          "ftrSelectBorder"
-                        )
-                      }
-                    >
-                      Hover
-                    </p>
-                  </div>
-                  <div>
-                    {ftrSelectBorder === "hover" ? (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-28px" }}>
-                          Border for Hover
-                        </p>
-                        <BorderControl
-                          label=""
-                          value={ftrHoverBorder}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "ftrHoverBorder"
-                            )
-                          }
-                          defaults={{ radius: "5px" }}
-                        />
-                      </div>
-                    ) : (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-28px" }}>
-                          Border for Normal
-                        </p>
-                        <BorderControl
-                          label=""
-                          value={ftrNormalBorder}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "ftrNormalBorder"
-                            )
-                          }
-                          defaults={{ radius: "5px" }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {/* shadow */}
-                <div className="my">
-                  <p className="shadChild">Shadow</p>
-                  <div
-                    style={{
-                      marginTop: "-2px",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <p
-                      style={{
-                        backgroundColor:
-                          ftrSelectShadow === "normal" ? "#4527a4" : "#ccc",
-                        color: ftrSelectShadow === "normal" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopLeftRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "normal",
-                          "ftrSelectShadow"
-                        )
-                      }
-                    >
-                      Normal
-                    </p>
-                    <p
-                      style={{
-                        backgroundColor:
-                          ftrSelectShadow === "hover" ? "#4527a4" : "#ccc",
-                        color: ftrSelectShadow === "hover" ? "white" : undefined,
-                        borderRadius: "0px",
-                        width: "100%",
-                        textAlign: "center",
-                        padding: "5px 0px",
-                        cursor: "pointer",
-                        borderTopRightRadius: "5px",
-                      }}
-                      onClick={() =>
-                        updateValueOfStylesProperty(
-                          "imgStyles",
-                          "hover",
-                          "ftrSelectShadow"
-                        )
-                      }
-                    >
-                      Hover
-                    </p>
-                  </div>
-                  <div>
-                    {ftrSelectShadow === "normal" ? (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-25px" }}>
-                          Shadow for Normal
-                        </p>
-                        <ShadowControl
-                          label=""
-                          value={ftrNormalShadow}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "ftrNormalShadow"
-                            )
-                          }
-                        />
-                      </div>
-                    ) : (
-                      <div style={{ marginTop: "-2px" }}>
-                        <p style={{ marginBottom: "-25px" }}>
-                          Shadow for Hover
-                        </p>
-                        <ShadowControl
-                          label=""
-                          value={ftrHoverShadow}
-                          onChange={(val) =>
-                            updateValueOfStylesProperty(
-                              "imgStyles",
-                              val,
-                              "ftrHoverShadow"
-                            )
-                          }
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
+            )
+              :
+              <div className='help'>
+                <img src='https://bpluginshome.b-cdn.net/wp-content/uploads/2021/07/bplugins-white.png' alt='' />
+                <h1>Need Help</h1>
               </div>
-            </PanelBody>
-          )}
-          {/* content styles */}
-          <div className="settingStyles">
-            {imgSrcOptionType === "custom" && (
-              <PanelBody
-                title={__("Caption Styles", "advanced-image")}
-                initialOpen={true}
-              >
-                <div className="styleChild" style={{ marginTop: "10px" }}>
-                  
-                  {/* color and background */}
-                  <div className="colorsPar">
-                    <p className="colorsChild">Colors</p>
-                    <ColorsControl
-                      label=""
-                      value={colors}
-                      onChange={(val) =>
-                        updateValueOfStylesProperty(
-                          "captionStyles",
-                          val,
-                          "colors"
-                        )
-                      }
-                      defaults={{ color: "black", bg: "#EEEEEE" }}
-                    />
-                  </div>
-                  {/* Width */}
-                  <div className="my">
-                    <div className="customWidth">
-                      <p className="widthChild">Width</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <UnitControl
-                      value={width[device]}
-                      onChange={(v) =>
-                        updateWidth("captionStyles", v, "width")
-                      }
-                    />
-                  </div>
-                  
-                  {/* typography */}
-                  <div className="my typo">
-                    <p className="typoChild">Typography</p>
-                    <Typography
-                      label=""
-                      value={typography}
-                      onChange={(val) =>
-                        updateValueOfStylesProperty(
-                          "captionStyles",
-                          val,
-                          "typography"
-                        )
-                      }
-                      defaults={{ fontSize: 13 }}
-                    />
-                  </div>
-                  {/* text align */}
-                  <div className="my">
-                    <div className="customTextAlign">
-                      <p className="textAlignChild">Text Align</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <Tab options={["left","right","center","justify"]} value={captionStyles.textAlign[device]} onChange={val=>setAttributes({handleImg:updateData(handleImg,val,"captionStyles","textAlign",device)})} />
-                    {/* <div
-                      style={{
-                        marginTop: "5px",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <p
-                        className="left allAlignPC"
-                        onClick={() => handleClick("left", "textAlign")}
-                      >
-                        Left
-                      </p>
-                      <p
-                        className="right allAlignP"
-                        onClick={() => handleClick("right", "textAlign")}
-                      >
-                        Right
-                      </p>
-                      <p
-                        className="center allAlignP"
-                        onClick={() => handleClick("center", "textAlign")}
-                      >
-                        Center
-                      </p>
-                      <p
-                        className="justify allAlignP"
-                        style={{
-                          borderRight: "0",
-                          borderTopRightRadius: "5px",
-                        }}
-                        onClick={() => handleClick("justify", "textAlign")}
-                      >
-                        Justify
-                      </p>
-                    </div> */}
-                  </div>
-                  {/* horizontal align */}
-                  <div className="my">
-                    <div className="customTextAlign">
-                      <p className="textAlignChild">Horizontal Align</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <Tab options={["start","center","end"]} value={captionStyles.horizontalAlign[device]} onChange={val=>setAttributes({handleImg:updateData(handleImg,val,"captionStyles","horizontalAlign",device)})} />
-                    {/* <div
-                      style={{
-                        marginTop: "5px",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <p
-                        className="hLeft allAlignPC"
-                        onClick={() => handleClick("start", "horizontalAlign")}
-                      >
-                        Left
-                      </p>
-                      <p
-                        className="hCenter allAlignP"
-                        onClick={() => handleClick("center", "horizontalAlign")}
-                      >
-                        Center
-                      </p>
-                      <p
-                        className="hRight allAlignP"
-                        style={{
-                          borderRight: "0",
-                          borderTopRightRadius: "5px",
-                        }}
-                        onClick={() => handleClick("end", "horizontalAlign")}
-                      >
-                        Right
-                      </p>
-                    </div> */}
-                  </div>
-                  {/* vertical align */}
-                  <div className="my">
-                    <div className="customTextAlign">
-                      <p className="textAlignChild">Vertical Align</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <Tab options={["top","middle","bottom"]} value={captionStyles.verticalAlign[device]} onChange={val=>setAttributes({handleImg:updateData(handleImg,val,"captionStyles","verticalAlign",device)})} />
-                    {/* <div
-                      style={{
-                        marginTop: "5px",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <p
-                        className="top allAlignPC"
-                        onClick={() => handleClick("top", "verticalAlign")}
-                      >
-                        Top
-                      </p>
-                      <p
-                        className="middle allAlignP"
-                        onClick={() => handleClick("middle", "verticalAlign")}
-                      >
-                        Middle
-                      </p>
-                      <p
-                        className="bottom allAlignP"
-                        style={{
-                          borderRight: "0",
-                          borderTopRightRadius: "5px",
-                        }}
-                        onClick={() => handleClick("bottom", "verticalAlign")}
-                      >
-                        Bottom
-                      </p>
-                    </div> */}
-                  </div>
-                  {/* margin */}
-                  <div className="my">
-                    <div className="margin">
-                      <p className="marChild">Margin</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <BBoxControl
-                      label=""
-                      values={margin[device]}
-                      onChange={(val) => updateValueOfStylesProperty( "captionStyles", val,"margin",  device )}
-                      // onChange={(val) => setAttributes({handleImg:updateData(handleImg,val,"captionStyles","margin", "device")})}
-                    ></BBoxControl>
-                  </div>
-                  {/* padding */}
-                  <div className="my">
-                    <div className="padding">
-                      <p className="padChild">Padding</p>
-                      <PanelRow>
-                      <Device />
-                      </PanelRow>
-                    </div>
-                    <BBoxControl
-                      label=""
-                      values={padding[device]}
-                      onChange={(val) =>
-                        updateValueOfStylesProperty(
-                          "captionStyles",
-                          val,
-                          "padding",
-                          device
-                        )
-                      }
-                    ></BBoxControl>
-                  </div>
-                </div>
-              </PanelBody>
-            )}
-          </div>
-              </div>
-            ) 
-            :
-            <div className='help'>
-            <img src='https://bpluginshome.b-cdn.net/wp-content/uploads/2021/07/bplugins-white.png' alt=''/>
-            <h1>Need Help</h1>
-          </div>
           }
-          
+
         </div>
       </InspectorControls>
     </Fragment>

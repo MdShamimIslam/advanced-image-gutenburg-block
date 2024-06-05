@@ -8,10 +8,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
   const { normalBorder,ftrNormalBorder, hoverBorder,ftrHoverBorder, normalShadow,ftrNormalShadow, hoverShadow,ftrHoverShadow } = imgStyles;
   const { isInset, vOffset, hOffset, blur, color, spreed } = normalShadow;
   const mainWrapper = `#mainWrapper-${cId}`;
-
-  const capWidth = width.desktop || '100%';
-  const capTabWidth = width.tablet || capWidth;
-  const capMobWidth = width.mobile || capTabWidth;
+ 
 
   return (
     <style>
@@ -98,7 +95,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
             border-radius : 0;
             `
       };  
-       width:${capWidth};
+       width:${width.desktop ? `${width.desktop}px` : '100%' };
        text-align:${textAlign.desktop};
        padding:${padding.desktop.top} ${padding.desktop.right} ${padding.desktop.bottom} ${padding.desktop.left};
        margin:${margin.desktop.top} ${margin.desktop.right} ${margin.desktop.bottom} ${margin.desktop.left};
@@ -248,7 +245,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
               `
         };
         
-        width:${capTabWidth};
+        width:${width.tablet ? `${width.tablet}px` : width.desktop };
         text-align:${textAlign.tablet};
         padding:${padding.tablet.top} ${padding.tablet.right} ${padding.tablet.bottom} ${padding.tablet.left};
         margin:${margin.tablet.top} ${margin.tablet.right} ${margin.tablet.bottom} ${margin.tablet.left};
@@ -312,7 +309,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
               border-radius : 0px;
               `
         };
-        width:${capMobWidth};
+        width:${width.mobile ? `${width.mobile}px` : width.tablet };
         text-align:${textAlign.mobile};
         padding:${padding.mobile.top} ${padding.mobile.right} ${padding.mobile.bottom} ${padding.mobile.left};
         margin:${margin.mobile.top} ${margin.mobile.right} ${margin.mobile.bottom} ${margin.mobile.left};
