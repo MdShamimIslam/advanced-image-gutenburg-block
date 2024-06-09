@@ -1,0 +1,124 @@
+.imgText {
+  margin-top: -15px;
+  color: rgba(204, 204, 204, 0.8);
+  font-size: 14px;
+}
+
+.imgSource {
+  text-align: center;
+  font-weight: semibold;
+  margin-top: -10px;
+  color: #4527a4;
+}
+
+.help {
+  background-color: rgb(221, 208, 190);
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.help img {
+  width: 30px;
+  border-radius: 100%;
+}
+
+.components-form-toggle.is-checked .components-form-toggle__track {
+  background-color: #635bbc;
+  border-color: #635bbc;
+}
+
+.imgChild div {
+  transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+}
+
+.imgChild:hover div {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.contentPan, .stylePan {
+  background: rgba(90, 89, 90, 0.1803921569);
+}
+
+.contentChild, .styleChild {
+  margin-top: -15px;
+  background: #EEEEEE;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+.inheritStyle1, .capBor, .colorsPar, .typo, .customTextAlign, .customHeight, .customWidth, .imgAlign, .margin, .padding {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inheritStyle2, .textAlignChild, .hoverEffectChild, .enableLinkChild, .fitImgChild, .heightChild, .widthChild, .imgSizeChild, .captionChild, .stlChild, .sourceChild, .alignChild, .borChild, .shadChild, .marChild, .disBChild, .colorsChild, .typoChild, .padChild {
+  margin-bottom: -5px;
+  font-weight: 500;
+  color: #4524a4;
+}
+
+.shadChild {
+  margin-bottom: 10px;
+}
+
+.borChild {
+  margin-bottom: 10px;
+}
+
+.sourceChild {
+  margin-bottom: 5px;
+}
+
+.stlChild {
+  margin-bottom: 5px;
+}
+
+.captionChild {
+  margin-bottom: 5px;
+}
+
+.imgSizeChild {
+  margin-bottom: 5px;
+}
+
+.fitImgChild {
+  margin-bottom: 5px;
+}
+
+.enableLinkChild {
+  margin-bottom: 5px;
+}
+
+.hoverEffectChild {
+  margin-bottom: 5px;
+}
+
+.my {
+  margin-top: 7px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.dashicons {
+  font-family: dashicons !important;
+}
+
+.wp-block-prefix-block-name * {
+  box-sizing: border-box;
+}
+.wp-block-prefix-block-name .prefixBlockName {
+  display: inline-block;
+}
+.wp-block-prefix-block-name .icon {
+  font-style: inherit;
+}
+.wp-block-prefix-block-name img {
+  width: 100%;
+  max-width: 100%;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,11 @@
+.prefixNowEditing {
+  outline: 2px solid #4527a4;
+}
+
+.prefixInspectorInfo {
+  padding: 6px;
+}
+.prefixInspectorInfo a {
+  text-decoration: none;
+  font-weight: bold;
+}/*# sourceMappingURL=editor.css.map */

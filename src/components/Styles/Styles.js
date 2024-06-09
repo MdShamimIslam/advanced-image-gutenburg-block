@@ -1,14 +1,14 @@
 import React from 'react';
 import { getBorderCSS, getColorsCSS, getTypoCSS } from '../../../../Components/utils/getCSS';
 
-const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
-  const { cId, handleImg,layout } = attributes;
-  const { imgURL, columns, autoHeight, imgStyleOptionType,ftrImgStyleOptionType, imgStyles, captionStyles, autoFitImage,ftrAutoFitImage, imgFitOptionType,ftrImgFitOptionType, imgHoverEffect,ftrImgHoverEffect,ftrColumns,ftrAutoHeight } = handleImg;
-  const {colors, typography, width, textAlign, padding, margin, horizontalAlign, verticalAlign } = captionStyles;
-  const { normalBorder,ftrNormalBorder, hoverBorder,ftrHoverBorder, normalShadow,ftrNormalShadow, hoverShadow,ftrHoverShadow } = imgStyles;
+const Styles = ({ attributes, featureMediaURL, device = "desktop" }) => {
+  const { cId, handleImg, layout } = attributes;
+  const { imgURL, columns, autoHeight, imgStyleOptionType, ftrImgStyleOptionType, imgStyles, captionStyles, autoFitImage, ftrAutoFitImage, imgFitOptionType, ftrImgFitOptionType, imgHoverEffect, ftrImgHoverEffect, ftrColumns, ftrAutoHeight } = handleImg;
+  const { colors, typography, width, textAlign, padding, margin, horizontalAlign, verticalAlign } = captionStyles;
+  const { normalBorder, ftrNormalBorder, hoverBorder, ftrHoverBorder, normalShadow, ftrNormalShadow, hoverShadow, ftrHoverShadow } = imgStyles;
   const { isInset, vOffset, hOffset, blur, color, spreed } = normalShadow;
   const mainWrapper = `#mainWrapper-${cId}`;
- 
+
 
   return (
     <style>
@@ -17,20 +17,20 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
 
       ${mainWrapper} {
         ${(!imgURL && !featureMediaURL) ?
-         `
+          `
           border: 1px solid #ccc;
           padding: 30px 50px;
           border-radius: 5px;
          `
-         : ''
-       }
+          : ''
+        }
        }
 
       ${mainWrapper} .featurePar{
         box-shadow: ${ftrNormalShadow.isInset ? 'inset' : ''} ${ftrNormalShadow.hOffset} ${ftrNormalShadow.vOffset} ${ftrNormalShadow.blur} ${ftrNormalShadow.spreed} ${ftrNormalShadow.color};
-        ${ftrColumns.width.desktop[layout.ftrSize] ? `width:${ftrColumns.width.desktop[layout.ftrSize]};`:""}
+        ${ftrColumns.width.desktop[layout.ftrSize] ? `width:${ftrColumns.width.desktop[layout.ftrSize]};` : ""}
         height:${ftrAutoHeight ? '100%' : ftrColumns.height.desktop};
-        border-radius: ${ftrImgStyleOptionType === 'rounded' ? ftrNormalBorder.radius ? ftrNormalBorder.radius : '0px':''};
+        border-radius: ${ftrImgStyleOptionType === 'rounded' ? ftrNormalBorder.radius ? ftrNormalBorder.radius : '0px' : ''};
         clip-path :${ftrImgStyleOptionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' :
           ftrImgStyleOptionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
             ftrImgStyleOptionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' :
@@ -49,7 +49,7 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
       ${mainWrapper} .featurePar img {
         width: 100%;
         height:100%;
-        border-radius: ${ ftrImgStyleOptionType === 'Circle' ? '100%' : ftrNormalBorder.radius} ;
+        border-radius: ${ftrImgStyleOptionType === 'Circle' ? '100%' : ftrNormalBorder.radius} ;
        }
 
       ${getTypoCSS(`${mainWrapper} .disCaption`, typography)?.styles}
@@ -57,64 +57,64 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
        ${getColorsCSS(colors)};
 
        ${(horizontalAlign.desktop === "start" && verticalAlign.desktop === "bottom") &&
+        `
+       ${width.desktop ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
        `
-       ${width.desktop ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-       `
-       };
+        };
        ${(horizontalAlign.desktop === "center" && verticalAlign.desktop === "bottom") &&
+        `
+       ${width.desktop ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
        `
-       ${width.desktop ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-       `
-       };
+        };
        ${(horizontalAlign.desktop === "end" && verticalAlign.desktop === "bottom") &&
+        `
+       ${width.desktop ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
        `
-       ${width.desktop ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-       `
-       };
+        };
 
       ${(horizontalAlign.desktop === "start" && verticalAlign.desktop === "top") &&
+        `
+            ${width.desktop ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.desktop ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
+        };
       ${(horizontalAlign.desktop === "center" && verticalAlign.desktop === "top") &&
+        `
+            ${width.desktop ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.desktop ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
+        };
       ${(horizontalAlign.desktop === "end" && verticalAlign.desktop === "top") &&
+        `
+            ${width.desktop ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.desktop ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
+        };
 
-      ${( verticalAlign.desktop === "middle") &&
-            `
+      ${(verticalAlign.desktop === "middle") &&
+        `
             border-radius : 0;
             `
-      };  
-       width:${width.desktop ? `${width.desktop}px` : '100%' };
+        };  
+       width: calc( ${width.desktop ? `${width.desktop}px` : '100%'} - ${margin.desktop.left} - ${margin.desktop.right} );
        text-align:${textAlign.desktop};
        padding:${padding.desktop.top} ${padding.desktop.right} ${padding.desktop.bottom} ${padding.desktop.left};
        margin:${margin.desktop.top} ${margin.desktop.right} ${margin.desktop.bottom} ${margin.desktop.left};
        position: absolute;
        height: fit-content;
-       ${captionAlignment(verticalAlign,horizontalAlign,device)}
+       ${captionAlignment(verticalAlign, horizontalAlign, device)}
 
       }
       ${mainWrapper} .imgSrc img {
        display: block;
        width: 100%;
        height:100%;
-       border-radius: ${ imgStyleOptionType === 'Circle' ? '100%' : normalBorder.radius};
+       border-radius: ${imgStyleOptionType === 'Circle' ? '100%' : normalBorder.radius};
        
       }
       
      ${mainWrapper} .imgSrc {
-        ${columns.width.desktop[layout.size] ? `width:${columns.width.desktop[layout.size]};`:""}
+        ${columns.width.desktop[layout.size] ? `width:${columns.width.desktop[layout.size]};` : ""}
         height:${autoHeight ? '100%' : columns.height.desktop}; 
         box-shadow: ${isInset ? 'inset' : ''} ${hOffset} ${vOffset} ${blur} ${spreed} ${color};
-        border-radius: ${imgStyleOptionType === 'rounded' ? normalBorder.radius ? normalBorder.radius : '0px' :''};
+        border-radius: ${imgStyleOptionType === 'rounded' ? normalBorder.radius ? normalBorder.radius : '0px' : ''};
         clip-path :${imgStyleOptionType === 'Triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' :
           imgStyleOptionType === 'Rhombus' ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
             imgStyleOptionType === 'Octagon' ? 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' :
@@ -189,11 +189,11 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
 
     @media only screen and (min-width:641px) and (max-width: 1024px){
       ${mainWrapper} .featurePar{
-        ${ftrColumns.width.tablet[layout.ftrSize] ? `width:${ftrColumns.width.tablet[layout.ftrSize]};`:""}
+        ${ftrColumns.width.tablet[layout.ftrSize] ? `width:${ftrColumns.width.tablet[layout.ftrSize]};` : ""}
         height:${ftrAutoHeight ? '100%' : ftrColumns.height.tablet};
        }
        ${mainWrapper} .imgSrc{
-        ${columns.width.tablet[layout.size] ? `width:${columns.width.tablet[layout.size]};`:""} 
+        ${columns.width.tablet[layout.size] ? `width:${columns.width.tablet[layout.size]};` : ""} 
          height:${autoHeight ? '100%' : columns.height.tablet};
        }
 
@@ -208,57 +208,57 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
        ${mainWrapper} .disCaption{
 
        ${(horizontalAlign.tablet === "start" && verticalAlign.tablet === "bottom") &&
+        `
+            ${width.tablet ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
             `
-            ${width.tablet ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-            `
-       };
+        };
        ${(horizontalAlign.tablet === "center" && verticalAlign.tablet === "bottom") &&
+        `
+            ${width.tablet ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
             `
-            ${width.tablet ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-            `
-       };
+        };
        ${(horizontalAlign.tablet === "end" && verticalAlign.tablet === "bottom") &&
+        `
+            ${width.tablet ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
             `
-            ${width.tablet ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
-            `
-       };
+        };
 
       ${(horizontalAlign.tablet === "start" && verticalAlign.tablet === "top") &&
+        `
+            ${width.tablet ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.tablet ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
+        };
       ${(horizontalAlign.tablet === "center" && verticalAlign.tablet === "top") &&
+        `
+            ${width.tablet ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.tablet ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
+        };
       ${(horizontalAlign.tablet === "end" && verticalAlign.tablet === "top") &&
+        `
+            ${width.tablet ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
             `
-            ${width.tablet ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-            `
-      };
-        ${( verticalAlign.tablet === "middle") &&
-              `
+        };
+        ${(verticalAlign.tablet === "middle") &&
+        `
               border-radius : 0px;
               `
         };
         
-        width:${width.tablet ? `${width.tablet}px` : width.desktop };
+        width:${width.tablet ? `${width.tablet}px` : width.desktop};
         text-align:${textAlign.tablet};
         padding:${padding.tablet.top} ${padding.tablet.right} ${padding.tablet.bottom} ${padding.tablet.left};
         margin:${margin.tablet.top} ${margin.tablet.right} ${margin.tablet.bottom} ${margin.tablet.left};
-        ${captionAlignment(verticalAlign,horizontalAlign,'tablet')}
+        ${captionAlignment(verticalAlign, horizontalAlign, 'tablet')}
  
        } 
     }
     @media only screen and (max-width:640px){
       ${mainWrapper} .featurePar{
-        ${ftrColumns.width.mobile[layout.ftrSize] ? `width:${ftrColumns.width.mobile[layout.ftrSize]};`:""}
+        ${ftrColumns.width.mobile[layout.ftrSize] ? `width:${ftrColumns.width.mobile[layout.ftrSize]};` : ""}
         height:${ftrAutoHeight ? '100%' : ftrColumns.height.mobile};
        }
        ${mainWrapper} .imgSrc{
-         ${columns.width.mobile[layout.size] ? `width:${columns.width.mobile[layout.size]};`:""}
+         ${columns.width.mobile[layout.size] ? `width:${columns.width.mobile[layout.size]};` : ""}
          height:${autoHeight ? '100%' : columns.height.mobile};
        }
 
@@ -273,46 +273,46 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
        ${mainWrapper} .disCaption{
 
         ${(horizontalAlign.mobile === "start" && verticalAlign.mobile === "bottom") &&
-              `
-              ${width.mobile ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
+        `
+              ${width.mobile ? `border-radius: 0 0 0 ${normalBorder.radius}` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
               `
         };
         ${(horizontalAlign.mobile === "center" && verticalAlign.mobile === "bottom") &&
-              `
-              ${width.mobile ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
+        `
+              ${width.mobile ? `border-radius: 0 ` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
               `
         };
         ${(horizontalAlign.mobile === "end" && verticalAlign.mobile === "bottom") &&
-              `
-              ${width.mobile ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} ` };
+        `
+              ${width.mobile ? `border-radius: 0 0  ${normalBorder.radius} 0` : `border-radius: 0 0 ${normalBorder.radius} ${normalBorder.radius} `};
               `
         };
  
        ${(horizontalAlign.mobile === "start" && verticalAlign.mobile === "top") &&
+        `
+             ${width.mobile ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
              `
-             ${width.mobile ? `border-radius:${normalBorder.radius} 0 0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-             `
-       };
+        };
        ${(horizontalAlign.mobile === "center" && verticalAlign.mobile === "top") &&
+        `
+             ${width.mobile ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
              `
-             ${width.mobile ? `border-radius:0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-             `
-       };
+        };
        ${(horizontalAlign.mobile === "end" && verticalAlign.mobile === "top") &&
+        `
+             ${width.mobile ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0`};
              `
-             ${width.mobile ? `border-radius: 0 ${normalBorder.radius}  0 0` : `border-radius:${normalBorder.radius} ${normalBorder.radius} 0 0` };
-             `
-       };
-        ${( verticalAlign.mobile === "middle") &&
-              `
+        };
+        ${(verticalAlign.mobile === "middle") &&
+        `
               border-radius : 0px;
               `
         };
-        width:${width.mobile ? `${width.mobile}px` : width.tablet };
+        width:${width.mobile ? `${width.mobile}px` : width.tablet};
         text-align:${textAlign.mobile};
         padding:${padding.mobile.top} ${padding.mobile.right} ${padding.mobile.bottom} ${padding.mobile.left};
         margin:${margin.mobile.top} ${margin.mobile.right} ${margin.mobile.bottom} ${margin.mobile.left};
-        ${captionAlignment(verticalAlign,horizontalAlign,'mobile')}
+        ${captionAlignment(verticalAlign, horizontalAlign, 'mobile')}
  
        }  
     }
@@ -324,8 +324,8 @@ const Styles = ({ attributes,featureMediaURL, device="desktop" }) => {
 
 export default Styles;
 
-const captionAlignment = (verticalAlign,horizontalAlign,device) => {
-   return `
+const captionAlignment = (verticalAlign, horizontalAlign, device) => {
+  return `
     ${horizontalAlign[device] === "start" ? 'left: 0;' : ''}
     ${horizontalAlign[device] === "center" ? 'left: 50%; transform: translateX(-50%);' : ''}
     ${horizontalAlign[device] === "end" ? 'right: 0;' : ''}
