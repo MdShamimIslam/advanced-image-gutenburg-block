@@ -143,12 +143,8 @@
         },
         "customImg": false,
         "customEditingMode": true,
-        "siteLogo": false,
-        "logoEditingMode": true,
         "featuredImg": false,
         "imgURL": "",
-        "logoSrc": "",
-        "logoURL": "",
         "imgSrcOptionType": "custom",
         "columns": {
           "width": { "desktop": {"default":"","thumbnail":"150px", "medium":"300px","large":"", "full":"420px"},
@@ -182,18 +178,7 @@
         "enableLinkText": "",
         "ftrEnableLinkText": "",
         "imgHoverEffect": "none",
-        "ftrImgHoverEffect": "none",
-        "logoColumns": {
-          "logoWidth": { "desktop": "10px", "tablet": "7px", "mobile": "4px" },
-          "logoHeight": { "desktop": "10px", "tablet": "7px", "mobile": "4px" }
-        },
-        "logoAutoHeight": true,
-        "logoAutoFitImage": false,
-        "logoImgFitOptionType": "cover",
-        "logoEnableLink": false,
-        "logoEnableNewTab": false,
-        "logoEnableLinkText": "",
-        "logoImgHoverEffect": "none"
+        "ftrImgHoverEffect": "none"
       }
     }
   },

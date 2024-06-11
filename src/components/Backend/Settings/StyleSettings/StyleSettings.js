@@ -623,7 +623,7 @@ const StyleSettings = ({ attributes, setAttributes, device }) => {
                             <PanelRow>
                               <Device />
                             </PanelRow>
-                          </div>
+                          </div> 
                           <RangeControl
                             value={width[device]}
                             allowReset

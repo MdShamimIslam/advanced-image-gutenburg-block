@@ -244,7 +244,7 @@ const Styles = ({ attributes, featureMediaURL, device = "desktop" }) => {
               `
         };
         
-        width:${width.tablet ? `${width.tablet}px` : width.desktop};
+        width: calc( ${width.tablet ? `${width.tablet}px` : '100%'} - ${margin.tablet.left} - ${margin.tablet.right} );
         text-align:${textAlign.tablet};
         padding:${padding.tablet.top} ${padding.tablet.right} ${padding.tablet.bottom} ${padding.tablet.left};
         margin:${margin.tablet.top} ${margin.tablet.right} ${margin.tablet.bottom} ${margin.tablet.left};
@@ -308,7 +308,7 @@ const Styles = ({ attributes, featureMediaURL, device = "desktop" }) => {
               border-radius : 0px;
               `
         };
-        width:${width.mobile ? `${width.mobile}px` : width.tablet};
+        width: calc( ${width.mobile ? `${width.mobile}px` : '100%'} - ${margin.mobile.left} - ${margin.mobile.right} );
         text-align:${textAlign.mobile};
         padding:${padding.mobile.top} ${padding.mobile.right} ${padding.mobile.bottom} ${padding.mobile.left};
         margin:${margin.mobile.top} ${margin.mobile.right} ${margin.mobile.bottom} ${margin.mobile.left};

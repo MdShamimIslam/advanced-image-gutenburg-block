@@ -9,7 +9,7 @@ import { updateData } from '../../../../utils/functions';
 
 const ContentSettings = ({ attributes, setAttributes,device }) => {
   const { handleImg,layout} = attributes;
-  const { imgSrcOptionType, displayCaption, autoHeight, autoFitImage, enableLink, enableNewTab, imgStyleOptionType,enableLinkText,imgHoverEffect, columns, logoColumns, logoAutoHeight, logoAutoFitImage, logoImgFitOptionType, logoEnableLink, logoEnableNewTab, logoImgHoverEffect, logoEnableLinkText, imgFitOptionType,ftrImgStyleOptionType,ftrColumns,ftrAutoHeight,ftrAutoFitImage,ftrImgFitOptionType,ftrEnableLink,ftrEnableNewTab,ftrEnableLinkText,ftrImgHoverEffect,customImg,siteLogo,featuredImg} = handleImg;
+  const { imgSrcOptionType, displayCaption, autoHeight, autoFitImage, enableLink, enableNewTab, imgStyleOptionType,enableLinkText,imgHoverEffect, columns, imgFitOptionType,ftrImgStyleOptionType,ftrColumns,ftrAutoHeight,ftrAutoFitImage,ftrImgFitOptionType,ftrEnableLink,ftrEnableNewTab,ftrEnableLinkText,ftrImgHoverEffect,customImg,featuredImg} = handleImg;
 
   // update value of property
   const updateValueOfProperty = (property, value, childProp = false, child2Prop = false) => {
@@ -57,7 +57,7 @@ const ContentSettings = ({ attributes, setAttributes,device }) => {
       <InspectorControls>
         <div className='contentPan'>
           {
-            customImg || siteLogo || featuredImg ?
+            customImg || featuredImg ?
             <PanelBody title={__("General Settings", "advanced-image")} initialOpen={true}>
             <div className='contentChild' style={{ marginTop: "10px" }}>
               {/* select image source type*/}
@@ -112,7 +112,7 @@ const ContentSettings = ({ attributes, setAttributes,device }) => {
                         <UnitControl
                           value={columns.width[device][layout.size]}
                           onChange={(v) =>setAttributes({handleImg:updateData(handleImg,v,"columns","width",device,layout.size)})}
-                        />
+                            />
                       </div>
                       {/* auto height */}
                       <div style={{ marginTop: "20px" }}>
@@ -197,115 +197,6 @@ const ContentSettings = ({ attributes, setAttributes,device }) => {
                           onChange={(v) => updateValueOfProperty("imgHoverEffect", v)}
                         />
 
-                      </div>
-                    </>
-                  )
-                }
-              </div>
-              {/* for Site Logo */}
-              <div>
-                {
-                  imgSrcOptionType === 'logo' && (
-                    <>
-                      {/* Width */}
-                      <div>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                          <h5 style={{ marginBottom: "3px" }}>Width</h5>
-                          <PanelRow>
-                            <Device
-                              onChange={(val) => updateValueOfProperty("device", val)}
-                            />
-                          </PanelRow>
-                        </div>
-                        <UnitControl
-                          value={logoColumns.logoWidth[device]}
-                          onChange={(v) => updateWidthAndHeight("logoColumns", v, "logoWidth")}
-                        />
-                      </div>
-                      {/* auto height */}
-                      <div style={{ marginTop: "20px" }}>
-
-                        <ToggleControl
-                          checked={logoAutoHeight}
-                          label="Auto Height"
-                          onChange={(v) => updateValueOfProperty("logoAutoHeight", v)}
-                        />
-                        {/* If auto height false */}
-                        {
-                          !logoAutoHeight && (
-                            <div style={{ marginTop: "-35px" }}>
-                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <h5 style={{ marginBottom: "3px" }}>Height</h5>
-                                <PanelRow>
-                                  <Device 
-                                  onChange={(val) => updateValueOfProperty("device", val)}
-                                   />
-                                </PanelRow>
-                              </div>
-                              <UnitControl
-                                value={logoColumns.logoHeight[device]}
-                                onChange={(v) => updateWidthAndHeight("logoColumns", v, "logoHeight")}
-                              />
-                            </div>
-                          )
-                        }
-                        <div style={{ marginTop: logoAutoHeight ? "-15px" : "" }}>
-                          <ToggleControl
-                            checked={logoAutoFitImage}
-                            label="Auto Fit Image"
-                            onChange={(v) => updateValueOfProperty("logoAutoFitImage", v)}
-                          />
-                        </div>
-                      </div>
-                      {/* image fit */}
-                      <div>
-                        {
-                          logoAutoFitImage && (
-                            <div style={{ marginTop: logoAutoFitImage ? "-10px" : "" }}>
-                              <h5 style={{ marginBottom: "3px" }}>Image Fit Options</h5>
-                              <SelectControl
-                                value={logoImgFitOptionType}
-                                options={imgFitOptions}
-                                onChange={(v) => updateValueOfProperty("logoImgFitOptionType", v)}
-                              />
-                            </div>
-                          )
-                        }
-                        <div>
-                          <ToggleControl
-                            checked={logoEnableLink}
-                            label="Enable Link?"
-                            onChange={(v) => updateValueOfProperty("logoEnableLink", v)}
-                          />
-                          {
-                            logoEnableLink && (
-                              <div style={{ marginTop: "-10px" }}>
-                                <h5 style={{ marginBottom: "5px" }}>Link</h5>
-                                <TextControl
-                                  label=""
-                                  value={logoEnableLinkText}
-                                  onChange={(v) => updateValueOfProperty("enableLinkText", v)}
-                                />
-                                <div style={{ marginTop: "-15px" }}>
-                                  <ToggleControl
-                                    checked={logoEnableNewTab}
-                                    label="Open in New Tab"
-                                    onChange={(v) => updateValueOfProperty("logoEnableNewTab", v)}
-                                  />
-                                </div>
-                              </div>
-                            )
-                          }
-                        </div>
-                      </div>
-                      {/* image hover effect */}
-                      <div>
-                        <h5 style={{ marginBottom: "3px" }}>Hover Effect</h5>
-                        <SelectControl
-                          value={logoImgHoverEffect}
-                          options={hoverEffectOptions}
-                          onChange={(v) => updateValueOfProperty("logoImgHoverEffect", v)}
-                        />
                       </div>
                     </>
                   )

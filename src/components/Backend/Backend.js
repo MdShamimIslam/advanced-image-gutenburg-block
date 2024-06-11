@@ -1,6 +1,6 @@
 import { withSelect } from "@wordpress/data";
 import Styles from "../Styles/Styles";
-import { FaImage, bootIcn, fontIcn } from "../../utils/icons";
+import { FaImage, bootIcn } from "../../utils/icons";
 import { FormFileUpload } from "@wordpress/components";
 import { Button } from "@wordpress/components";
 import { MediaUpload, RichText } from "@wordpress/block-editor";
@@ -45,14 +45,7 @@ const Backend = ({ attributes, setAttributes, featureMediaURL,device }) => {
     });
     setAttributes({ handleImg: changeImgValue });
   };
-  // update image source
-  const updatedImg1 = (property, value) => {
-    const changeImgValue = produce(handleImg, (draft) => {
-      draft[property] = value;
-      draft.imgSrcOptionType = 'logo';
-    });
-    setAttributes({ handleImg: changeImgValue });
-  };
+ 
   // update image source
   const updatedImg2 = (property, value) => {
     const changeImgValue = produce(handleImg, (draft) => {
@@ -106,7 +99,7 @@ const Backend = ({ attributes, setAttributes, featureMediaURL,device }) => {
       <div className="back"  id={`mainWrapper-${cId}`}>
         {/* Show source image */}
         <div>
-          {!customImg && !siteLogo && !featuredImg ? (
+          {!customImg && !featuredImg ? (
             <div>
               <p className="imgSource">Choose Your Image Source</p>
               <div className="images">
@@ -116,20 +109,9 @@ const Backend = ({ attributes, setAttributes, featureMediaURL,device }) => {
                   className="imgChild"
                 >
                   <div>
-                    {" "}
                     <FaImage />
                   </div>
                   <p className="imgText">Custom Image</p>
-                </div>
-                {/* site logo */}
-                <div
-                  className="imgChild"
-                  onClick={() => updatedImg1("siteLogo", true)}
-                >
-                  <div>{fontIcn}</div>
-                  <p className="imgText" style={{ marginTop: "-8px" }}>
-                    Site Logo
-                  </p>
                 </div>
                 {/* featured img */}
                 <div
@@ -241,12 +223,6 @@ const Backend = ({ attributes, setAttributes, featureMediaURL,device }) => {
                 )
               }
               </div>
-              {/* Site Logo */}
-                { 
-                imgSrcOptionType === "logo" && siteLogo &&  (
-                  <h4 style={{textAlign:"center",color:"red"}}>No Implement</h4>
-                )
-              }
               {/* Featured Image*/}
               <div>
                 {imgSrcOptionType === "featured" && featuredImg &&  (

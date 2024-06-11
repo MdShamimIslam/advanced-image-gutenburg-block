@@ -1,8 +1,7 @@
 // image source
 export const imgSrcOptions = [
-  { label: 'Site Logo', value: 'logo' },
-  { label: 'Featured Image', value: 'featured' },
-  { label: 'Custom', value: 'custom' }
+  { label: 'Custom', value: 'custom' },
+  { label: 'Featured Image', value: 'featured' }
 ]
 export const imgStyleOptions = [
   { label: 'Rounded', value: 'rounded' },
